@@ -13,11 +13,11 @@ pipeline {
             steps {
                 sh 'mvn clean package -DskipTests'
             }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
+//            post {
+//                always {
+//                    junit 'target/surefire-reports/*.xml'
+//                }
+//            }
         }
         stage('Docker Build') {
             steps {
