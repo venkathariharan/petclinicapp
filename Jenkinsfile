@@ -22,10 +22,10 @@ pipeline {
         stage('Docker Build') {
             steps {
                 sh "docker login etlabvlldvopap2.et.lab:80 -u \$ARTIFACTORY_USR -p \$ARTIFACTORY_PSW"
-                sh "docker build . -t etlabvlldvopap2.et.lab:80/docker/arunatest:\$(git rev-parse --short HEAD)"
-                sh "docker build . -t etlabvlldvopap2.et.lab:80/docker/arunatest:testcandidate"
-                sh "docker push etlabvlldvopap2.et.lab:80/docker/arunatest:testcandidate"
-                sh "docker push etlabvlldvopap2.et.lab:80/docker/arunatest:\$(git rev-parse --short HEAD)"
+                sh "docker build . -t etlabvlldvopap2.et.lab:80/docker/petclinic:\$(git rev-parse --short HEAD)"
+                sh "docker build . -t etlabvlldvopap2.et.lab:80/docker/petclinic:testcandidate"
+                sh "docker push etlabvlldvopap2.et.lab:80/docker/petclinic:testcandidate"
+                sh "docker push etlabvlldvopap2.et.lab:80/docker/petclinic:\$(git rev-parse --short HEAD)"
             }
         }
         stage('Functional Test') {
