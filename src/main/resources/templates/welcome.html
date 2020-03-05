@@ -17,7 +17,11 @@
 				<div role="alert" th:if="${param.logout}" class="alert alert-info">You have been logged out</div>
 				<div role="alert" th:if="${param.error}" class="alert alert-error">There was an error, please try again.</div>
 
-				<h2 th:text="#{welcome}">Welcome!</h2>
+				<h2 th:text="#{welcome}" id="welcomeBanner">Welcome!</h2>
+
+				<div sec:authorize="isAuthenticated()">
+					<p id="loggedInBanner">You are logged in, <span sec:authentication="name"></span>.</p>
+				</div>
 
 				<img src="../static/images/pets.png" th:src="@{/images/pets.png}" />
 			</div>
@@ -28,14 +32,14 @@
 				<tr>
 					<td class="col-sm-5" style="text-align: right">
 						<h3>Returning users:</h3>
-						<a th:href="@{'/login'}" href="login.html" class="btn btn-success">Click here</a>
+						<a th:href="@{'/login'}" href="login.html" class="btn btn-success" id="returningLogin">Click here</a>
 					</td>
 					<td class="col-sm-2">&nbsp;</td>
 					<td class="col-sm-5" style="text-align: left">
 						<h3>First time users:</h3>
 						<form action="#" th:action="@{/users}" method="get">
 							<div>
-								<button type="submit" class="btn btn-info">Click here</button>
+								<button type="submit" class="btn btn-info" id="firstTimeLogin">Click here</button>
 							</div>
 						</form>
 					</td>
