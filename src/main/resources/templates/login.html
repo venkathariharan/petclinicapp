@@ -21,7 +21,8 @@
 				<form name="form" th:action="@{/login}" action="welcome.html" method="POST">
 					<fieldset>
 						<!-- Field MUST be called 'username' or Spring won't find it. -->
-						<input type="text" name="username" value="" placeholder="Username" /> <input type="password" name="password"
+						<input type="text" name="username" id="username" value="" placeholder="Username" />
+						<input type="password" name="password" id="password"
 							placeholder="Password" />
 						<br/><br/>
 						<label for="rememberMe">Remember Me?</label> <input type="checkbox" name="rememberMe" />
