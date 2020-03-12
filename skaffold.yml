@@ -1,0 +1,20 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  insecureRegistries:
+    - etlabvlldvopap2.et.lab
+  artifacts:
+    - image: etlabvlldvopap2.et.lab/docker-local/pet-clinic-demo
+      kaniko:
+        buildContext:
+          localDir: {}
+  tagPolicy:
+    sha256: {}
+  cluster:
+    namespace: kaniko-test
+profiles:
+  - name: local
+    patches:
+      - op: add
+        path: /build/cluster/dockerConfig
+        value: {secretName: "build-secret"}
