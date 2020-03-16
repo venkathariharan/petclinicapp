@@ -9,7 +9,8 @@ build:
         buildContext:
           localDir: {}
   tagPolicy:
-    sha256: {}
+    envTemplate:
+      template: "{{.IMAGE_NAME}}:{{.TAGNAME}}"
   cluster:
     namespace: kaniko-test
 profiles:
