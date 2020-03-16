@@ -21,9 +21,9 @@ pipeline {
         }
         stage('Skaffold Build') {
             steps {
-                sh "export TAGNAME=${BUILD_NUMBER}"
-                sh "echo $TAGNAME"
-                sh "skaffold build -p local"
+               // sh "export TAGNAME=${BUILD_NUMBER}"
+                //sh "echo $TAGNAME"
+                sh "export TAGNAME=${BUILD_NUMBER} && skaffold build -p local"
             }
         }
         stage('Deploy to K8s') {
