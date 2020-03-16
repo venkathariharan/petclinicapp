@@ -21,9 +21,8 @@ pipeline {
         }
         stage('Skaffold Build') {
             steps {
-               // sh "export TAGNAME=${BUILD_NUMBER}"
-                //sh "echo $TAGNAME"
-                sh "export TAGNAME=${BUILD_NUMBER} && skaffold build -p local"
+                sh "skaffold build -p local"
+                
             }
         }
         stage('Deploy to K8s') {
@@ -40,6 +39,13 @@ pipeline {
                 sh "echo success"
             }
         }
-       
+     
     }
+    post {
+    failure {
+        mail to: 'venkat.hariharan@ey.com',
+             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Something is wrong with ${env.BUILD_URL}"
+    }
+}  
 }
