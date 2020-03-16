@@ -1,7 +1,7 @@
 pipeline {
     agent {
         kubernetes {
-            label 'testagent1'
+            label 'testagent2'
             defaultContainer 'jnlp-agent'
         }
     }
@@ -19,13 +19,15 @@ pipeline {
 //                }
 //            }
         }
-        stage('Docker Build') {
+        stage('Skaffold Build') {
             steps {
-                sh "docker login etlabvlldvopap2.et.lab:80 -u \$ARTIFACTORY_USR -p \$ARTIFACTORY_PSW"
-                sh "docker build . -t etlabvlldvopap2.et.lab:80/docker/petclinic2:\$(git rev-parse --short HEAD)"
-                sh "docker build . -t etlabvlldvopap2.et.lab:80/docker/petclinic2:testcandidate"
-                sh "docker push etlabvlldvopap2.et.lab:80/docker/petclinic2:testcandidate"
-                sh "docker push etlabvlldvopap2.et.lab:80/docker/petclinic2:\$(git rev-parse --short HEAD)"
+                sh "skaffold build -p local"
+            }
+        }
+        stage('Deploy to K8s') {
+            steps {
+              
+                sh "echo success"
             }
         }
         stage('Functional Test') {
@@ -36,12 +38,6 @@ pipeline {
                 sh "echo success"
             }
         }
-        stage('Docker Tag Latest') {
-            steps {
-                //sh "docker tag etlabvlldvopap2.et.lab:80/docker/arunatest:\$(git rev-parse --short HEAD) etlabvlldvopap2.et.lab:80/docker/arunatest:latest"
-                //sh "docker push etlabvlldvopap2.et.lab:80/docker/arunatest:latest"
-                sh "echo success"
-            }
-        }
+       
     }
 }
