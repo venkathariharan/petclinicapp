@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('JAR Build') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn clean package'
             }
 //            post {
 //                always {
@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Skaffold Build') {
             steps {
-                sh "skaffold build -p local"
+                sh "export TAGNAME=${BUILD_NUMBER} && skaffold build -p local"
                 
             }
         }
