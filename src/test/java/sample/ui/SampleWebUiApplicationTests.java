@@ -108,48 +108,48 @@ public class SampleWebUiApplicationTests extends BaseTests {
 		assertTrue("Missing expected data.", StringUtils.countMatches(vetList, "<tr>") == 6);
 	}
 
-	@Test
-	public void testCreateUserAndLogin() throws Exception {
-		ResponseEntity<String> page = getPage("http://localhost:" + this.port + "/users");
+// 	@Test
+// 	public void testCreateUserAndLogin() throws Exception {
+// 		ResponseEntity<String> page = getPage("http://localhost:" + this.port + "/users");
 
-		assertTrue("Client or server error.",
-				!page.getStatusCode().is4xxClientError() && !page.getStatusCode().is5xxServerError());
+// 		assertTrue("Client or server error.",
+// 				!page.getStatusCode().is4xxClientError() && !page.getStatusCode().is5xxServerError());
 
-		if (page.getStatusCode() == HttpStatus.FOUND) {
-			page = getPage(page.getHeaders().getLocation());
-		}
+// 		if (page.getStatusCode() == HttpStatus.FOUND) {
+// 			page = getPage(page.getHeaders().getLocation());
+// 		}
 
-		String body = page.getBody();
-		assertNotNull("Body was null", body);
+// 		String body = page.getBody();
+// 		assertNotNull("Body was null", body);
 
-		String username = "newuser";
-		String password = "password";
-		String formAction = getFormAction(page);
+// 		String username = "newuser";
+// 		String password = "password";
+// 		String formAction = getFormAction(page);
 
-		MultiValueMap<String, String> form = new LinkedMultiValueMap<String, String>();
-		form.set("username", username);
-		form.set("email", "newuser@newuser.org");
-		form.set("name", "New User");
-		form.set("uiPassword", password);
-		form.set("verifyPassword", password);
-		form.set("_eventId_saveUser", "Create User");
-		form.set("_csrf", csrfValue);
+// 		MultiValueMap<String, String> form = new LinkedMultiValueMap<String, String>();
+// 		form.set("username", username);
+// 		form.set("email", "newuser@newuser.org");
+// 		form.set("name", "New User");
+// 		form.set("uiPassword", password);
+// 		form.set("verifyPassword", password);
+// 		form.set("_eventId_saveUser", "Create User");
+// 		form.set("_csrf", csrfValue);
 
-		httpHeaders.set("X-CSRF-TOKEN", csrfValue);
+// 		httpHeaders.set("X-CSRF-TOKEN", csrfValue);
 
-		page = postPage(formAction, form);
+// 		page = postPage(formAction, form);
 
-		if (page.getStatusCode() == HttpStatus.FOUND) {
-			page = getPage(page.getHeaders().getLocation());
-		}
+// 		if (page.getStatusCode() == HttpStatus.FOUND) {
+// 			page = getPage(page.getHeaders().getLocation());
+// 		}
 
-		assertEquals(HttpStatus.OK, page.getStatusCode());
-		body = page.getBody();
-		assertNotNull("Body was null", body);
-		assertTrue("User not created:\n" + body, body.contains("User " + username + " saved"));
+// 		assertEquals(HttpStatus.OK, page.getStatusCode());
+// 		body = page.getBody();
+// 		assertNotNull("Body was null", body);
+// 		assertTrue("User not created:\n" + body, body.contains("User " + username + " saved"));
 
-		executeLogin(username, password);
-	}
+// 		executeLogin(username, password);
+// 	}
 
 	@Test
 	public void testCss() throws Exception {
