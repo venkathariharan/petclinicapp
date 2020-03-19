@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: petclinic
-        image: etlabvlldvopap2.et.lab/docker-local/petclinic-demo:BUILDNUMBER
+        image: etlabvlldvopap2.et.lab/docker-local/pet-clinic-demo:BUILDNUMBER
         ports:
         - containerPort: 8080
 
