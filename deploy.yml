@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic
+  labels:
+    app: petclinic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: petclinic
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      containers:
+      - name: petclinic
+        image: etlabvlldvopap2.et.lab/docker-local/petclinic2:BUILDNUMBER
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: petclinic
+spec:
+  selector:
+    app: petclinic
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hellonode-ingress
+spec:
+  rules:
+  - host: petclinic.apps.kub1.et.lab
+    http:
+      paths:
+      - backend:
+          serviceName: petclinic 
+          servicePort: 8080
