@@ -59,7 +59,7 @@ public class SampleWebUiApplicationTests extends BaseTests {
 
 		assertEquals(HttpStatus.FOUND, page.getStatusCode());
 
-		if (page.getStatusCode() == HttpStatus.FOUND) {
+		if (page.getStatusCode() == HttpStatus.OK) {
 			page = sendRequest(page.getHeaders().getLocation(), HttpMethod.GET);
 		}
 
