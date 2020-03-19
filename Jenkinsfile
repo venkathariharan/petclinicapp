@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('JAR Build') {
             steps {
-                sh 'mvn clean package -D skiptests'
+                sh 'mvn clean package -D skipTests'
             }
 //            post {
 //                always {
