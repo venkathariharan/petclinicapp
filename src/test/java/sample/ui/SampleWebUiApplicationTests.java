@@ -57,7 +57,7 @@ public class SampleWebUiApplicationTests extends BaseTests {
 
 		page = sendRequest("http://localhost:" + this.port + "/logout", HttpMethod.GET, form);
 
-		assertEquals(HttpStatus.FOUND, page.getStatusCode());
+		assertEquals(HttpStatus.valueOf(200), page.getStatusCode());
 
 		if (page.getStatusCode() == HttpStatus.OK) {
 			page = sendRequest(page.getHeaders().getLocation(), HttpMethod.GET);
