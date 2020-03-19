@@ -29,6 +29,9 @@ pipeline {
             steps {
                 sh "sed -i s/BUILDNUMBER/${BUILD_NUMBER}/g deploy.yml && kubectl apply -f deploy.yml -n jenkins"
                 sh "echo success"
+                timeout(time: 2, unit: "HOURS") {
+                  input message: 'Proceed with functional testing?', ok: 'Yes'
+                }
             }
         }
         stage('Functional Test') {
