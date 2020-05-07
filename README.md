@@ -24,6 +24,8 @@ Spring Pet Clinic example using Spring-Boot, Thymeleaf, AOP, MVC, Embedded Tomca
 
 Using __Embedded Apache Tomcat__:
 
+
+
 	mvn spring-boot:run
 
 You can then access the sample here: [http://localhost:8080/](http://localhost:8080/)
