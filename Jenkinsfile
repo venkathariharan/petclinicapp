@@ -50,5 +50,10 @@ pipeline {
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
              body: "Something is wrong with ${env.BUILD_URL}"
     }
-}  
+    success {
+        mail to: 'venkat.hariharan@ey.com',
+             subject: "Successful Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Pipeline was successful ${env.BUILD_URL}"
+    }
+    }  
 }
